@@ -1,10 +1,18 @@
 import { ExpenseProps } from "../../models/interfaces/ExpenseProps/ExpenseProps.ts";
 import { useState } from "react";
-import "./Expense.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPercent } from "@fortawesome/free-solid-svg-icons";
 import Button from "../Button/Button.tsx";
 import * as React from "react";
+import { FormatMoney } from "../../utils/util.ts";
+import {
+  ActionsContainer,
+  Card,
+  CardHeader,
+  Container,
+  FormContainer,
+  FormInput,
+} from "../Balance/Balance.tsx";
 
 const Expense = ({
   emitMovement,
@@ -56,57 +64,53 @@ const Expense = ({
   };
 
   return (
-    <div>
-      <div className="expense_container">
-        <div className="expense_card">
-          <header className="expense_header">
-            <FontAwesomeIcon icon={faPercent} color="#E43F4d" size="2x" />
-            <h2>Despesas</h2>
-          </header>
-          <h3>{currentExpenses > 0 ? currentExpenses : "R$ 0"}</h3>
+    <Container>
+      <Card>
+        <CardHeader>
+          <FontAwesomeIcon icon={faPercent} color="#E43F4d" size="2x" />
+          <h2>Despesas</h2>
+        </CardHeader>
+        <h3>
+          {currentExpenses > 0 ? FormatMoney(String(currentExpenses)) : "R$ 0"}
+        </h3>
 
-          {!renderInputForm && (
-            <Button
-              action={handleRenderInputForm}
-              title="Saída"
-              priority="Output"
-              disable={currentBalance === 0}
-            />
-          )}
+        {!renderInputForm && (
+          <Button
+            action={handleRenderInputForm}
+            title="Saída"
+            priority="Output"
+            disable={currentBalance === 0}
+          />
+        )}
 
-          {renderInputForm && (
-            <form onSubmit={formSubmitHandler}>
-              <div
-                className={`input_form_container ${!isFormValid ? "invalid" : ""}`}
-              >
-                <input
-                  type="text"
-                  placeholder="Nome"
-                  className="expense_input"
-                  value={inputName}
-                  onChange={handleInputNameForm}
-                />
-                <input
-                  type="text"
-                  placeholder="Valor"
-                  className="expense_input"
-                  value={inputValue}
-                  onChange={handleInputValueForm}
-                />
-              </div>
-              <div className="actions_form_buttons_container">
-                <Button
-                  title="Cancelar"
-                  priority="Output"
-                  action={hideInputForm}
-                />
-                <Button type="submit" title="Adicionar" priority="Input" />
-              </div>
-            </form>
-          )}
-        </div>
-      </div>
-    </div>
+        {renderInputForm && (
+          <form onSubmit={formSubmitHandler}>
+            <FormContainer invalid={!isFormValid}>
+              <FormInput
+                type="text"
+                placeholder="Nome"
+                value={inputName}
+                onChange={handleInputNameForm}
+              />
+              <FormInput
+                type="text"
+                placeholder="Valor"
+                value={inputValue}
+                onChange={handleInputValueForm}
+              />
+            </FormContainer>
+            <ActionsContainer>
+              <Button
+                title="Cancelar"
+                priority="Output"
+                action={hideInputForm}
+              />
+              <Button type="submit" title="Adicionar" priority="Input" />
+            </ActionsContainer>
+          </form>
+        )}
+      </Card>
+    </Container>
   );
 };
 

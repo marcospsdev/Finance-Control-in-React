@@ -3,6 +3,8 @@ import Header from "./components/Header/Header.tsx";
 import FinanceControl from "./components/FinanceControl/FinanceControl.tsx";
 import { useState } from "react";
 import { Movement } from "./models/interfaces/Movement/Movement.ts";
+import Movements from "./components/Movements/Movements.tsx";
+import { FormatMoney } from "./utils/util.ts";
 
 function App() {
   const [currentBalance, setCurrentBalance] = useState(0); // State de saldo atual
@@ -15,7 +17,7 @@ function App() {
         const movements = [...prevMovements];
         movements.unshift({
           name: movement.name,
-          value: movement.value,
+          value: FormatMoney(movement.value),
           type: movement.type,
           id: Math.random().toString(),
         });
@@ -48,6 +50,7 @@ function App() {
         expenses={currentExpenses}
         handleSetMovement={setNewMovement}
       />
+      <Movements movementsList={movementsItens} />
     </div>
   );
 }
