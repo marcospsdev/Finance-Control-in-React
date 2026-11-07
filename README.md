@@ -1,54 +1,107 @@
-# React + TypeScript + Vite
+# Controle Financeiro em React (estudo)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Primeira versão de um controle financeiro: saldo, entradas, saídas e movimentações.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Sumário
 
-## Expanding the ESLint configuration
+- [Visão geral](#visão-geral)
+- [Stack e versões](#stack-e-versões)
+- [Estrutura do projeto](#estrutura-do-projeto)
+- [Primeiros passos](#primeiros-passos)
+- [Scripts](#scripts)
+- [Autor](#autor)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Visão geral
+
+Projeto de estudo de React com TypeScript e styled-components. Uma tela única com o saldo atual, um formulário para lançar entradas e saídas e a lista de movimentações. Foi o ponto de partida do [Controle Financeiro Pessoal](https://github.com/marcospsdev/my-personal-finances), bem mais completo.
+
+Principais funcionalidades:
+
+- Componentes tipados com interfaces de props
+- Estilos com styled-components
+- Cálculo de saldo a partir das movimentações
+
+Feito em 2025, nos estudos de React.
+
+---
+
+## Stack e versões
+
+| Categoria | Tecnologia | Versão |
+| --- | --- | --- |
+| Linguagem | TypeScript | 5.7 |
+| UI | React | 19.0 |
+| Build | Vite | 6.2 |
+| Estilo | styled-components | 6.1 |
+| Ícones | Font Awesome | 0.2 |
+| Qualidade | ESLint + Prettier | 9.21 / 3.5 |
+
+As versões exatas estão no `package.json`.
+
+---
+
+## Estrutura do projeto
+
+```
+src/
+  assets/
+    react.svg
+  components/
+    Balance/
+    Button/
+    Expense/
+    FinanceControl/
+    Header/
+    Movements/
+  models/
+    interfaces/
+  utils/
+    util.ts
+  App.css
+  App.tsx
+  index.css
+  main.tsx
+  vite-env.d.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Primeiros passos
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Pré-requisitos
+
+- Node.js 18 ou mais recente
+- npm
+
+### Instalação
+
+```bash
+git clone https://github.com/marcospsdev/Finance-Control-in-React.git
+cd Finance-Control-in-React
+npm install
+npm run dev               # http://localhost:5173
 ```
+
+---
+
+## Scripts
+
+| Comando | Descrição |
+| --- | --- |
+| `npm run dev` | Servidor de desenvolvimento (Vite) |
+| `npm run build` | Typecheck e build de produção em `dist/` |
+| `npm run lint` | Analisa o código com o ESLint |
+| `npm run preview` | Serve o build de produção localmente |
+
+---
+
+## Autor
+
+**Marcos Paulo** · Desenvolvedor Full-Stack
+
+- LinkedIn: [in/marcospsdev](https://www.linkedin.com/in/marcospsdev)
+- GitHub: [@marcospsdev](https://github.com/marcospsdev)
